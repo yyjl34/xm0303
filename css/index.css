@@ -586,16 +586,22 @@ i{
 	border-left: none;
 	float:right ;
 }
+.kuangCant{
+	color:#ccc;
+}	
 .danpin_bottom{
 	width: 100%;
 	height: 339px;
 	background: #ffffff;
 	position: absolute;
 	bottom: 0;
-	left:100%;
+	transition:all 1s;
 }
-.danpin_bottom.active{
-	left: 0;
+.shops_1{
+	left:0;
+}
+.shops_2{
+	left:100%;
 }
 .danpin_list{
 	width: 234px;

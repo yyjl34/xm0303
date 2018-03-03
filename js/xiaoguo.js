@@ -120,25 +120,82 @@ $(document).ready(function () {
     })
 
     //小米明星单品
-    let xmdpbox=$(".danpin");
-    let xmwidth=xmdpbox.width;
-    let xmdp=$(".danpin_bottom");
-    let now1=0;
-    let next1=0
-    function move2() {
-        next1=now1+1;
-        if(next1>=xmdp.length){
-            next1=0;
+    // let xmdpbox=$(".danpin");
+    // let xmwidth=xmdpbox.width;
+    // let xmdp=$(".danpin_bottom");
+    // let now1=0;
+    // let next1=0
+    // function move2() {
+    //     next1=now1+1;
+    //     if(next1>=xmdp.length){
+    //         next1=0;
+    //     }
+    //     xmdp[next1].style.left='100%';
+    //     animate(xmdp[now1],{left:-xmwidth});
+    //     animate(xmdp[next1],{left:0});
+    // };
+    // let dpt=setInterval(move2,5000)
+
+    let starIndex = 1,
+        starBox = $('.mi_start_shops'), // 
+        zuokuang = $('.dianji .zuokuang'),
+        youkuang = $('.dianji .youkuang'),
+        shop1 = $('.shops_1'),
+        shop2 = $('.shops_2');
+        // console.log(starBox,zuokuang,youkuang,shop1,shop2)
+
+        starBox.on('mouseover',function(){
+            clearInterval(starTimer);
+        }).on('mouseout',function(){
+            starTimer = setInterval(starAuto, 1000);
+        });
+
+        zuokuang.on('click',function(){
+            if(starIndex == 1){
+                return
+            }
+            zuokuang.addClass('kuangCant');
+            youkuang.removeClass('kuangCant');
+            shop1.css('left',0);
+            shop2.css('left','100%');
+            starIndex = 1;
+        }).on('mouseover',function(){
+            clearInterval(starTimer);
+        }).on('mouseout',function(){
+            starTimer = setInterval(starAuto, 1000);
+        });
+        youkuang.on('click',function(){
+            if(starIndex == 2){
+                return
+            }
+            youkuang.addClass('kuangCant');
+            zuokuang.removeClass('kuangCant');
+            shop1.css('left', '-100%');
+            shop2.css('left', '0');
+            starIndex = 2;
+        }).on('mouseover',function(){
+            clearInterval(starTimer);
+        }).on('mouseout',function(){
+            starTimer = setInterval(starAuto, 1000);
+        });
+
+        function starAuto(){
+            if (starIndex == 1) {
+                youkuang.addClass('kuangCant');
+                zuokuang.removeClass('kuangCant');
+                shop1.css('left', '-100%');
+                shop2.css('left', '0');
+                starIndex = 2;
+            } else {
+                zuokuang.addClass('kuangCant');
+                youkuang.removeClass('kuangCant');
+                shop1.css('left', 0);
+                shop2.css('left', '100%');
+                starIndex = 1;
+            }
         }
-        xmdp[next1].style.left='100%';
-        animate(xmdp[now1],{left:-xmwidth});
-        animate(xmdp[next1],{left:0});
-    };
-    let dpt=setInterval(move2,5000)
-
-
-
-
+        let starTimer = setInterval(starAuto,1000);
+        // console.log(starTimer)
 
 
 
